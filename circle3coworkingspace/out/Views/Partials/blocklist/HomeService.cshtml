@@ -1,0 +1,18 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListModel>
+@{
+    if (Model?.Any() != true) { return; }
+}
+	   
+			
+<div class="owl-carousel" data-loop="false" data-items="5" data-lg-items="3" data-md-items="3" data-sm-items="2" data-xs-items="2" data-xx-items="1" data-space="50">
+      	
+    @foreach (var block in Model)
+    {
+        if (block?.ContentUdi == null) { continue; }
+        var data = block.Content;
+
+        @await Html.PartialAsync("blocklist/Components/" + data.ContentType.Alias, block)
+    }
+		
+</div>	
+		

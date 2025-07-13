@@ -1,0 +1,18 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+    var content = (ContentModels.HomeOurClient)Model.Content;
+         var ContactsOurClientImg = content.Value<MediaWithCrops>("homeOurClientImage");
+
+    
+}
+
+<div class="marquee-item">
+    <span class="icon"><img class="img-fluid" src="images/client-logo/icon.png" alt="" /></span>
+    <span class="logo-image"><img class="img-fluid" src="@ContactsOurClientImg?.MediaUrl()" alt="" /></span>
+</div>
+@*                     <div class="item"><div class="city-item"><img class="img-fluid" src="@ContactsOurClientImg?.MediaUrl()" alt="" /><span class="city-name">@content.Value("homeOurClientName")</span></div></div>
+ *@

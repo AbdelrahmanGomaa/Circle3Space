@@ -1,0 +1,28 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+         var content = (ContentModels.AboutTestimonial)Model.Content;
+    
+}
+
+		    
+         <div class="item">
+                      <div class="testimonial-wrapper testimonial-style-1">
+                        <div class="testimonial-quote">
+                          <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M67.441 27.3633C50.9175 36.9141 40.5465 47.5195 36.2691 59.1211C32.8121 68.5547 33.984 76.3477 45.1168 77.5781C58.7105 79.1016 69.2574 90.6445 69.2574 104.648C69.2574 117.188 60.8199 127.676 49.3355 130.898C25.2535 137.52 6.26912 115.84 5.85896 92.2266C5.33162 59.2969 23.2613 34.5703 57.9488 17.8711L67.441 27.3633Z" fill="url(#quote-7)"/><path d="M142.324 27.3633C125.8 36.9141 115.429 47.5195 111.211 59.1211C107.753 68.5547 108.925 76.3477 120.058 77.5781C133.652 79.1016 144.199 90.6445 144.199 104.648C144.199 117.188 135.761 127.676 124.277 130.898C100.195 137.52 81.2105 115.84 80.8004 92.2266C80.273 59.2969 98.2027 34.5117 132.89 17.8711L142.324 27.3633Z" fill="url(#quote-8)"/><defs><linearGradient id="quote-7" x1="69.2574" y1="135.436" x2="-27.575" y2="91.4504" gradientUnits="userSpaceOnUse"><stop offset="0" class="start-color"/><stop offset="1" class="end-color"/></linearGradient><linearGradient id="quote-8" x1="144.199" y1="135.436" x2="47.3664" y2="91.4504" gradientUnits="userSpaceOnUse"><stop offset="0" class="start-color"/><stop offset="1" class="end-color"/></linearGradient></defs></svg>
+                          <svg class="quote-border" width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M66.628 27.2574C50.38 36.7529 40.085 47.3256 35.8 58.9481L35.7996 58.9491C34.0585 63.7002 33.4365 68.1508 34.7546 71.6041C36.0953 75.1166 39.3776 77.4467 45.0611 78.075C58.4039 79.5703 68.7574 90.9012 68.7574 104.648C68.7574 116.956 60.4764 127.253 49.201 130.417C37.3507 133.674 26.7631 129.976 19.0677 122.541C11.3611 115.094 6.56189 103.9 6.35889 92.2182C6.09687 75.8525 10.4195 61.5439 19.1066 49.251C27.7442 37.0283 40.7156 26.772 57.8464 18.4758L66.628 27.2574Z" stroke="black"/><path d="M132.786 18.4759L141.513 27.2564C125.264 36.7517 114.968 47.3251 110.741 58.9495C109 63.7005 108.378 68.1509 109.696 71.6041C111.037 75.1166 114.319 77.4467 120.002 78.075C133.345 79.5703 143.699 90.9012 143.699 104.648C143.699 116.956 135.418 127.253 124.142 130.417C112.292 133.674 101.704 129.976 94.0091 122.541C86.3025 115.094 81.5033 103.9 81.3003 92.2182C81.0383 75.8524 85.3609 61.5291 94.0481 49.2289C102.686 36.9992 115.656 26.7432 132.786 18.4759Z" stroke="black"/></svg>
+                        </div>
+                        <div class="testimonial-content"><p>@content.Value("aboutTestimonialDesc")</p></div>
+                        <div class="testimonial-author">
+                          <div class="author-info">
+                            <h6 class="author-name"> @content.Value("aboutTestimonialName")</h6>
+                            <span class="author-position"> @content.Value("aboutTestimonialPostion")</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
