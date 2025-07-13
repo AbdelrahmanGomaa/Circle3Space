@@ -1,21 +1,22 @@
-# Stage 1: Build and publish
+# المرحلة الأولى: بناء المشروع (Build)
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
-# ننسخ كل ملفات المشروع
+# نسخ جميع ملفات المشروع إلى مجلد العمل داخل الحاوية
 COPY . .
 
-# نعمل publish في فولدر داخل المشروع نفسه
+# الانتقال إلى المجلد الفرعي الذي يحتوي على ملف المشروع csproj
+WORKDIR /src/circle3coworkingspace
+
+# تنفيذ عملية النشر (publish) للملف الصحيح في مجلد مشترك
 RUN dotnet publish "circle3coworkingspace.csproj" -c Release -o /src/publish
 
-# Stage 2: Runtime
+# المرحلة الثانية: إعداد بيئة التشغيل (Runtime)
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
 
-# انسخ الملفات المنشورة من مرحلة الـ build
-COPY --from=build /src/publish ./
+# نسخ الملفات المنشورة من مرحلة البناء إلى مجلد العمل في بيئة التشغيل
+COPY --from=build /src/publish .
 
-# أنشئ مجلد الميديا (لو مش موجود)
-RUN mkdir -p /app/wwwroot/media
-
+# تحديد نقطة الدخول لتشغيل التطبيق
 ENTRYPOINT ["dotnet", "circle3coworkingspace.dll"]
