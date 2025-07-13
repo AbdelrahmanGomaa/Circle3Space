@@ -1,0 +1,1 @@
+{"version":3,"file":"constants-CCn8jUns.js","sources":["../../../src/packages/tiny-mce/property-editors/tiny-mce/constants.ts"],"sourcesContent":["export const UMB_BLOCK_RTE_PROPERTY_EDITOR_UI_ALIAS = 'Umb.PropertyEditorUi.TinyMCE';\r\n"],"names":["UMB_BLOCK_RTE_PROPERTY_EDITOR_UI_ALIAS"],"mappings":"AAAO,MAAMA,IAAyC;"}

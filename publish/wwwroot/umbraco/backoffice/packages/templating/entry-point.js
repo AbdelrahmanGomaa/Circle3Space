@@ -1,0 +1,17 @@
+import "./partial-view-picker-modal.token-me6dTR2i.js";
+import "./partial-view-workspace.context-token-BPSaKQI9.js";
+import "@umbraco-cms/backoffice/workspace";
+import "@umbraco-cms/backoffice/picker-input";
+import "./script-item.store.context-token-5j5GfCRe.js";
+import "./script-picker-modal.token-40IoQpW7.js";
+import "./stylesheet-rule-ref.element-D5o_a6xC.js";
+import "@umbraco-cms/backoffice/server-file-system";
+import "@umbraco-cms/backoffice/resources";
+import "@umbraco-cms/backoffice/external/backend-api";
+import "./stylesheet-rule-settings-modal.token-e3AAPWoc.js";
+import "@umbraco-cms/backoffice/repository";
+import "@umbraco-cms/backoffice/store";
+import "./input-template.element-BT47KynU.js";
+import "@umbraco-cms/backoffice/id";
+import "./template-item.store.context-token-rCTaUJ7s.js";
+//# sourceMappingURL=entry-point.js.map

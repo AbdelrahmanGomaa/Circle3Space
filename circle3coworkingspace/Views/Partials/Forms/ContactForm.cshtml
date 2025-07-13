@@ -1,0 +1,210 @@
+﻿@using circle3coworkingspace.Models;
+@using Microsoft.AspNetCore.Mvc.ModelBinding;
+@using Umbraco.Cms.Web.Common;
+@using Umbraco.Extensions
+@using circle3coworkingspace
+@using Umbraco.Cms.Web.Common.PublishedModels
+@using Umbraco.Cms.Web.Common.Views
+@using Umbraco.Cms.Core.Models.PublishedContent
+
+@using circle3coworkingspace.Controllers
+@using Umbraco.Cms.Core.Models
+@model circle3coworkingspace.Models.ContactFormViewModel
+
+@inject UmbracoHelper umbracoHelper
+
+@{
+    var successMessage = ViewBag.SuccessMessage as string;
+    var modelState = TempData["ModelState"] as ModelStateDictionary;
+    var contactFormModel = TempData["ContactFormModel"] as ContactFormViewModel;
+}
+
+<div class="form-wrapper">
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            Please fix the errors below.
+        </div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    else
+    {
+        @using (Html.BeginUmbracoForm<ContactFormController>(nameof(ContactFormController.SubmitAsync), null, new { @class = "was-validated" }))
+        {
+
+            @if (modelState != null && contactFormModel != null)
+            {
+                <div class="alert alert-success contact-success-message"
+                     role="alert">
+                    Thank You! Your message has been sent.
+                </div>
+            }
+            <div class="row">
+                    <div class="col-md-6">
+                    <input asp-for="Name"
+                           class="form-control form--control"
+                           placeholder="Your name" aria-label="Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                    <input asp-for="Email"
+                           pattern="[A-Za-z0-9._%+-]+[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                           class="form-control"
+                           placeholder="Enter email address"
+                           type="email" aria-label="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+
+                    <input asp-for="PhoneNumber"
+                           pattern="^(\+?\d{10,15}|0\d{10})$"
+                           class="form-control"
+                           placeholder="Enter phone number"
+                           type="tel" />
+
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                    <input asp-for="Subject" 
+                           class="form-control form--control"
+                           placeholder="Mail Subject" />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+
+                    </div>
+                    <div class="col-lg-12">
+                    <textarea asp-for="Message"
+                              class="form-control form--control ps-4"
+                              rows="5"
+                              placeholder="How can we Help you ?"></textarea>
+                </div>
+                    <div class="col-lg-12">
+                    <button id="send-message-btn" class="btn arrow-down btn-effect"><span>Send Message</span></button>
+                    </div>
+                </div>
+           
+        }
+    }
+</div>
+
+@* <div class="card-body">
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            Please fix the errors below.
+        </div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    else
+    {
+        @using (Html.BeginUmbracoForm<ContactFormController>(nameof(ContactFormController.SubmitAsync), null, new { @class = "was-validated" }))
+        {
+
+            @if (modelState != null && contactFormModel != null)
+            {
+                <div class="alert alert-success contact-success-message"
+                     role="alert">
+                    Thank You! Your message has been sent.
+                </div>
+            }
+            <div class="input-box">
+                <label class="label-text">Name</label>
+                <div class="form-group">
+                    <input asp-for="Name" pattern="[A-Za-z]+"
+                           class="form-control form--control"
+                           placeholder="Your name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                    <span class="la la-user input-icon"></span>
+                </div>
+            </div>
+            <!-- end input-box -->
+
+            <div class="input-box">
+                <label class="label-text">Phone</label>
+                <div class="form-group">
+                    <input asp-for="PhoneNumber"
+                           pattern="^\+?[0-9][0-9]{9,14}$"
+                           class="form-control form--control"
+                           placeholder="Enter phone number"
+                           type="tel" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    <span class="la la-envelope input-icon"></span>
+                </div>
+            </div>
+            <!-- end input-box -->
+            <div class="input-box">
+                <label class="label-text">Email Address</label>
+                <div class="form-group">
+                    <input asp-for="Email"
+                           pattern="[A-Za-z0-9._%+-]+[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                           class="form-control form--control"
+                           placeholder="Enter email address"
+                           type="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                    <span class="la la-envelope input-icon"></span>
+                </div>
+            </div>
+            <!-- end input-box -->
+
+
+            <div class="input-box">
+                <label class="label-text">Subject</label>
+                <div class="form-group">
+                    <input asp-for="Subject" pattern="[A-Za-z]+"
+                           class="form-control form--control"
+                           placeholder="Mail Subject" />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+
+                    <span class="la la-envelope input-icon"></span>
+                </div>
+            </div>
+            <!-- end input-box -->
+
+            <div class="input-box">
+                <label class="label-text">Message</label>
+                <div class="form-group">
+                    <textarea asp-for="Message"
+                              class="form-control form--control ps-4"
+                              rows="5"
+                              placeholder="How can we Help you ?"></textarea>
+                </div>
+            </div>
+            <!-- end input-box -->
+            <div class="btn-box">
+                <button id="send-message-btn"
+                        class="btn theme-btn"
+                        type="submit">
+                    Send Message
+                </button>
+            </div>
+            <!-- end btn-box -->
+            <!-- end card-body -->
+        }
+    }
+</div> *@
+@* 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Reset form after submit
+        if (document.querySelector('.alert-success')) {
+            setTimeout(() => {
+                document.querySelector("form").reset();
+            }, 3000);
+        }
+    </script>
+} *@

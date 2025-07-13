@@ -1,0 +1,40 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+
+	var Lang = "en";
+	if (System.Threading.Thread.CurrentThread.CurrentCulture.DisplayName.ToLower() != "english") {
+	    Lang = "ar";
+	}
+}
+
+<!DOCTYPE html>
+<html lang="@Lang">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Fav Icon -->
+		<link rel="icon" type="image/x-icon" href="~/media/b01mq5ht/favicon.ico">
+
+		@await Html.PartialAsync("Generic/SEO")
+
+		@RenderSection("Style", false)
+		
+	</head>
+
+	<body>
+
+		@await Html.PartialAsync("Generic/Header")
+
+		@RenderBody()
+
+		@await Html.PartialAsync("Generic/Footer")
+
+		@RenderSection("Script", false)
+
+	</body>
+
+</html>
