@@ -1,0 +1,92 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+
+
+@{
+    var selection = Model.Root().Children().Where(x => x.IsVisible());
+    var HomePage = Model.Root();
+    var FooterLogo = HomePage.Value<MediaWithCrops>("footerImage");
+
+}
+
+<!--=================================
+     Site Footer -->
+<footer class="site-footer footer-bg sticky-footer footer-dark">
+    <div class="footer-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer-main-inner">
+                        <div class="footer-logo">
+                            <div class="widget widget-logo mb-5"><a class="navbar-brand" href="index.html"><img class="img-fluid" src="@FooterLogo?.MediaUrl()" alt="logo" /></a></div>
+                            <div class="widget widget-menu">
+                                <h4 class="widget-title">Quick Links</h4>
+                                <ul class="list-unstyled list-col-3 mb-0">
+
+
+                                    @if (!HomePage.Value<bool>("umbracoNaviHide"))
+                                    {
+                                        <li class="nav-item active"><a class="nav-link" href="@HomePage.Url()">@(!(String.IsNullOrEmpty(HomePage.Value<String>("menuDisplayName"))) ? HomePage.Value("menuDisplayName") : HomePage.Name)</a></li>
+                                    }
+
+                                    @foreach (var item in selection)
+                                    {
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="@item.Url()">@(!(String.IsNullOrEmpty(item.Value<String>("menuDisplayName"))) ? item.Value("menuDisplayName") : item.Name)</a>
+                                            @if (@item.Children.Where(x => x.IsVisible()).Any() && item.Name != "Blog" && item.Name != "WorkPlaces")
+                                            {
+                                                <ul class="main-dropdown">
+                                                    @foreach (var Child in item.Children.Where(x => x.IsVisible()))
+                                                    {
+                                                        <li class="nav-item active"><a class="nav-link" href="@Child.Url()">@(!(String.IsNullOrEmpty(item.Value<String>("menuDisplayName"))) ? Child.Value("menuDisplayName") : Child.Name)</a></li>
+                                                    }
+                                                </ul>
+                                            }
+                                        </li>
+                                    }
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-social">
+                            <div class="widget widget-socail">
+                                <ul class="socail-icon">
+                                    <li><a target="_blank" href="https://www.facebook.com/circle3eg/"><i class="fa-brands fa-facebook-f"></i>Facebook</a></li>
+                                    <li><a target="_blank" href="https://www.instagram.com/circle3coworkingspace/"><i class="fa-brands fa-instagram"></i>Instagram</a></li>
+                                    <li><a target="_blank" href="https://www.linkedin.com/company/circle-3-coworking-space/"><i class="fa-brands fa-linkedin"></i>Linkedin</a></li>
+                                    <li><a target="_blank" href="https://www.tiktok.com/@@circle3space"><i class="fa-brands fa-tiktok"></i>Tiktok</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-info">
+                            <div class="widget widget-info mb-5">
+                                <h5 class="title">Call Center</h5>
+                                <a class="number" href="#">@HomePage.Value("footerPhoneNumber")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6"><p><a href="#">@HomePage.Value("footerText1")</a></p></div>
+                <div class="col-lg-6 text-lg-end"><p>@HomePage.Value("footerText2")</p></div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!--=================================
+Back To Top -->
+<div class="back-to-top">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+</div>
+
+   
+

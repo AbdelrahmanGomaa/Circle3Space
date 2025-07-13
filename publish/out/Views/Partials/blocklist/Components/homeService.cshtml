@@ -1,0 +1,26 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+         var content = (ContentModels.HomeService)Model.Content;
+         var ContactsServiceImg = content.Value<MediaWithCrops>("homeServiceImage");
+         var HomeServiceIcon = content.Value<MediaWithCrops>("homeServiceIcon");
+
+
+    
+}
+
+                            <div class="item">
+                                <div class="infobox-wrapper infobox-style-2">
+                                    <div class="infobox-icon">
+
+                                     <img src="@HomeServiceIcon?.MediaUrl()" />
+                                    </div>
+                                    <div class="infobox-content">
+                                        <h5 class="infobox-title"><a href="#">@content.Value("homeServiceName")</a></h5>
+                                        @*<p>@content.Value("homeServiceDesc")</p>*@    
+                                    </div>
+                                </div>
+                            </div>

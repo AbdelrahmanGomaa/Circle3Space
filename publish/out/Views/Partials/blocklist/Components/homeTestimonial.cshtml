@@ -1,0 +1,33 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+@{
+         var content = (ContentModels.AboutTestimonial)Model.Content;
+    
+}
+
+	
+                    <div class="item">
+                                <div class="testimonial-wrapper testimonial-style-2">
+                                    <div class="testimonial-ratings">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <div class="testimonial-quote"><img class="img-fluid" src="images/quote-icon-01.png" alt="" /></div>
+                                    <div class="testimonial-content">
+                                        <p>@content.Value("aboutTestimonialDesc")</p>
+                                    </div>
+                                    <div class="testimonial-author">
+                                        <div class="author-image"><img class="img-fluid" src="images/avatar/01.jpg" alt="" /></div>
+                                        <div class="author-info">
+                                            <h6 class="author-name">@content.Value("aboutTestimonialName")</h6>
+                                            <span class="author-position">@content.Value("aboutTestimonialPostion")</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
