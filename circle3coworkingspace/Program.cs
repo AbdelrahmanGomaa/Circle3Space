@@ -23,8 +23,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-builder.WebHost.UseUrls($"http://*:{port}");
 WebApplication app = builder.Build();
 
 // تأكد من استخدام الـ session بعد ما يتم بناء التطبيق بالكامل

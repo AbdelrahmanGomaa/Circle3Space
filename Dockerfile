@@ -1,14 +1,8 @@
-# المرحلة الأولى: بناء المشروع (Build)
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-
-# نسخ جميع ملفات المشروع إلى مجلد العمل داخل الحاوية
 COPY . .
-
-# الانتقال إلى المجلد الفرعي الذي يحتوي على ملف المشروع csproj
 WORKDIR /src/circle3coworkingspace
-
-# تنفيذ عملية النشر (publish) للملف الصحيح في مجلد مشترك
+RUN dotnet restore
 RUN dotnet publish "circle3coworkingspace.csproj" -c Release -o /src/publish
 
 # المرحلة الثانية: إعداد بيئة التشغيل (Runtime)
