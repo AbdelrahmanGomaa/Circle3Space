@@ -25,7 +25,6 @@ builder.Services.AddSession(options =>
 
 
 WebApplication app = builder.Build();
-app.MapGet("/", () => "Hello World");
 
 // تأكد من استخدام الـ session بعد ما يتم بناء التطبيق بالكامل
 app.UseSession();
