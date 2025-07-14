@@ -18,9 +18,8 @@ services:
       context: .
     container_name: circle3space-web
     ports:
-      - "5055:8080"
+      - "5055:44370"
     environment:
-      - ASPNETCORE_URLS=http://+:8080
       - ConnectionStrings__umbracoDbDSN=Server=circle3space-sql,1433;Database=c3space;User Id=SA;Password=P@ssw0rd123Circle;TrustServerCertificate=True;
     restart: always
     depends_on:
