@@ -1,31 +1,31 @@
 version: "3.9"
 
 services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: circle3space-web
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./media:/app/wwwroot/media
+    restart: always
+    depends_on:
+      - sqlserver
+    environment:
+      ASPNETCORE_URLS: "http://+:5000"
+      ASPNETCORE_ENVIRONMENT: Production
+
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: circle3space-sql
     environment:
       SA_PASSWORD: "P@ssw0rd123Circle"
       ACCEPT_EULA: "Y"
-    ports:
-      - "1544:1433"
-    restart: always
     volumes:
-      - sqlserverdata:/var/opt/mssql
-
-  web:
-    build:
-      context: .
-    container_name: circle3space-web
+      - /var/opt/mssql/data:/var/opt/mssql/data
+      - /var/opt/mssql/backups:/var/opt/mssql/backups
     ports:
-      - "5055:1525"
-    environment:
-      - ConnectionStrings__umbracoDbDSN=Server=circle3space-sql,1433;Database=c3space;User Id=SA;Password=P@ssw0rd123Circle;TrustServerCertificate=True;
+      - "1434:1433"
     restart: always
-    depends_on:
-      - sqlserver
-    volumes:
-      - ./media:/app/wwwroot/media
-
-volumes:
-  sqlserverdata:

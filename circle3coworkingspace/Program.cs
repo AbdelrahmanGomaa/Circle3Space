@@ -22,7 +22,7 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-
+builder.WebHost.UseUrls("http://*:5001");
 
 WebApplication app = builder.Build();
 
