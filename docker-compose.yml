@@ -16,6 +16,8 @@ services:
     environment:
       ASPNETCORE_URLS: "http://+:5000"
       ASPNETCORE_ENVIRONMENT: Production
+      Umbraco__CMS__Global__ApplicationUrl: "http://localhost:5001"
+
 
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
