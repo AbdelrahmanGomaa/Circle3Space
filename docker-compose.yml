@@ -14,7 +14,7 @@ services:
     depends_on:
       - sqlserver
     environment:
-      ASPNETCORE_URLS: "http://+:5000"
+      ASPNETCORE_URLS: "http://+:5001"
       ASPNETCORE_ENVIRONMENT: Production
       Umbraco__CMS__Global__ApplicationUrl: "http://localhost:5001"
 
@@ -29,5 +29,5 @@ services:
       - /var/opt/mssql/data:/var/opt/mssql/data
       - /var/opt/mssql/backups:/var/opt/mssql/backups
     ports:
-      - "1434:1433"
+      - "15433:1433"
     restart: always
