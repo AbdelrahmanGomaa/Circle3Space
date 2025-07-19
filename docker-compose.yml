@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   web:
     build:
@@ -16,7 +14,7 @@ services:
     environment:
       ASPNETCORE_URLS: "http://+:5001"
       ASPNETCORE_ENVIRONMENT: Production
-      Umbraco__CMS__Global__ApplicationUrl: "http://localhost:5001"
+      Umbraco__CMS__Global__ApplicationUrl: "https://circle3space.com"
 
 
   sqlserver:
